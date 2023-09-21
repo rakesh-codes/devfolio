@@ -149,3 +149,26 @@
   });
 
 })(jQuery);
+// Get the checkbox input element
+const switchInput = document.querySelector('.switch__input');
+
+// Function to toggle dark mode
+function toggleDarkMode() {
+    // Check the initial state of the checkbox and update dark mode accordingly
+    if (switchInput.checked) {
+        document.body.classList.remove('dark'); // Remove the light mode class
+        document.body.classList.add('light-mode'); // Add the dark mode class
+    } else {
+        document.body.classList.remove('light-mode'); // Remove the dark mode class
+        document.body.classList.add('dark'); // Add the light mode class
+    }
+}
+
+// Add an event listener to the checkbox input
+switchInput.addEventListener('change', function () {
+    // Toggle dark mode when the checkbox changes
+    toggleDarkMode();
+});
+
+// Set the initial dark mode state when the page loads
+toggleDarkMode();
