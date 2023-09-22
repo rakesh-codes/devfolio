@@ -1,24 +1,227 @@
-/**
-* Template Name: Personal - v2.1.0
-* Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+/*-------------------------Night mode start-------------------------------------*/
+.switch {
+  display: inline-block;
+  position: relative;
+}
+
+.switch__input {
+  clip: rect(.5px, .5px, .5px, .5px);
+  clip-path: inset(50%);
+  height: .5px;
+  width: .5px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.switch__label {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  background-color: #2B2B2B;
+  border: 2.5px solid #5B5B5B;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(.46,.03,.52,.96);
+}
+
+.switch__indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateX(-72%);
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #7B7B7B;
+  border-radius: 9999px;
+  box-shadow: 5px 0px 0 0 rgba(#000000, 0.2) inset;
+
+  &::before,
+  &::after {
+      position: absolute;
+      content: '';
+      display: block;
+      background-color: #FFFFFF;
+      border-radius: 9999px;
+  }
+
+  &::before {
+      top: 3.5px;
+      left: 3.5px;
+      width: 4.5px;
+      height: 4.5px;
+      background-color: #FFFFFF;
+      opacity: 0.6;
+  }
+
+  &::after {
+      bottom: 4px;
+      right: 3px;
+      width: 7px;
+      height: 7px;
+      background-color: #FFFFFF;
+      opacity: 0.8;
+  }
+}
+
+.switch__decoration {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  display: block;
+  width: 2.5px;
+  height: 2.5px;
+  background-color: #FFFFFF;
+  border-radius: 9999px;
+  animation: twinkle 0.8s infinite -0.6s;
+
+  &::before,
+  &::after {
+      position: absolute;
+      display: block;
+      content: '';
+      width: 2.5px;
+      height: 2.5px;
+      background-color: #FFFFFF;
+      border-radius: 9999px;
+  }
+
+  &::before {
+      top: -10px;
+      left: 5px;
+      opacity: 1;
+      animation: twinkle 0.6s infinite;
+  }
+
+  &::after {
+      top: -3.5px;
+      left: 15px;
+      animation: twinkle 0.6s infinite -0.2s;
+  }
+}
+
+@keyframes twinkle {
+  50% { opacity: 0.2; }
+}
+
+.switch__indicator {
+  &,
+  &::before,
+  &::after {
+      transition: all 0.4s cubic-bezier(.46,.03,.52,.96);
+  }
+}
+
+.switch__input:checked + .switch__label {
+  background-color: #8FB5F5;
+  border-color: #347CF8;
+
+  .switch__indicator {
+      background-color: #ECD21F;
+      box-shadow: none;
+      transform: translate(-50%, -50%) translateX(72%);
+
+      &::before,
+      &::after {
+          display: none;
+      }
+  }
+
+  .switch__decoration {
+      top: 50%;
+      transform: translate(0%, -50%);
+      animation: cloud 8s linear infinite;
+
+      width: 10px;
+      height: 10px;
+
+      &::before {
+          width: 5px;
+          height: 5px;
+          top: auto;
+          bottom: 0;
+          left: -4px;
+          animation: none;
+      }
+
+      &::after {
+          width: 7.5px;
+          height: 7.5px;
+          top: auto;
+          bottom: 0;
+          left: 8px;
+          animation: none;
+      }
+
+      &,
+      &::before,
+      &::after {
+          border-radius: 9999px 9999px 0 0;
+      }
+
+      &::after {
+          border-bottom-right-radius: 9999px;
+      }
+  }
+}
+@keyframes cloud {
+  0% {
+      transform: translate(0%, -50%);
+  }
+  50% {
+      transform: translate(-50%, -50%);
+  }
+  100% {
+      transform: translate(0%, -50%);
+  }
+}
+
+/*-------------------------Night mode start-------------------------------------*/
+
+:root {
+  --background-dark: #000000;
+  --text-dark: #000000;
+  --background-light: #FFFF;
+  --text-light: #FFFF;
+  --background-dark-shade: #ffffff1a;
+  --text-color: #de1d8d;
+  --text-underline: #FFB000;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
-  color: #fff;
   position: relative;
-  background: transparent;
+}
+
+.light-mode {
+  --background-dark: #F5F5DC;
+  --text-dark: #FFFF;
+  --background-light: #000000;
+  --text-light: #000000;
+  --background-dark-shade: #0000001a;
+  --text-color: #12d640;
+  --text-underline: #ffbf00;
+}
+
+body.light-mode::before {
+  background: var(--background-dark);
+  color: var(--text-dark);
+}
+.dark::before {
+  background: var(--background-dark);
+  color: var(--text-light);
 }
 
 body::before {
   content: "";
   position: fixed;
-  background: #010e1b;
+  background: var(--background-light);
   background-size: cover;
   left: 0;
   right: 0;
@@ -33,12 +236,17 @@ body::before {
 }
 
 a {
-  color: #12d640;
+  color: var(--text-color);
 }
 
 a:hover {
-  color: #12d640;
+  color: var(--text-dark);
   text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway", sans-serif;
+  color: var(--text-light);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -72,7 +280,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header h1 a, #header h1 a:hover {
-  color: #dee2e6;
+  color: var(--text-light);
   line-height: 1;
   display: inline-block;
 }
@@ -80,12 +288,12 @@ h1, h2, h3, h4, h5, h6 {
 #header h2 {
   font-size: 24px;
   margin-top: 20px;
-  color: #12d640;
+  color: var(--text-light);
 }
 
 #header h2 span {
-  color: #ffc107;
-  border-bottom: 2px solid #1c7d32;
+  color: var(--text-underline);
+  border-bottom: 2px solid var(--text-underline);
   padding-bottom: 6px;
 }
 
@@ -104,18 +312,23 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-light);
   line-height: 1;
   margin-right: 8px;
   border-radius: 50%;
   width: 40px;
   height: 40px;
 }
-
-#header .social-links a:hover {
-  background: #1c7d32;
+body.light-mode #header .social-links a {  background: rgba(0, 245, 65, 0.1);
 }
+body.light-mode #header .social-links a:hover {
+  background: var(--text-color);
+}
+#header .social-links a:hover {
+  background: var(--text-color);
+}
+
 
 @media (max-width: 992px) {
   #header h1 {
@@ -157,7 +370,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu a {
   display: block;
   position: relative;
-  color: #fff;
+  color: var(--text-light); /* Use CSS variable for text color */
   font-size: 19px;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -170,7 +383,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: #9e7f25;
+  background-color: var(--text-underline); /* Use CSS variable for text underline color */
   visibility: hidden;
   width: 0px;
   transition: all 0.3s ease-in-out 0s;
@@ -182,7 +395,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
-  color: #12d640;
+  color: var(--text-color); /* Use CSS variable for text color on hover */
   text-decoration: none;
 }
 
@@ -276,7 +489,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   top: 0;
   right: 0;
-  background: #09203a;
+  background: var(--background-dark);
 }
 
 #header.header-top .social-links, #header.header-top h2 {
@@ -327,7 +540,7 @@ section.section-show {
 }
 
 section .container {
-  background: rgba(0, 0, 0, 0);
+  background: var(--background-dark);
   padding: 30px;
 }
 
@@ -348,7 +561,7 @@ section .container {
   margin: 0 0 20px 0;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #dee2e6;
+  color: #FFF;
   font-family: "Poppins", sans-serif;
 }
 
@@ -357,7 +570,7 @@ section .container {
   width: 120px;
   height: 1px;
   display: inline-block;
-  background: #dee2e6;
+  background: var(--text-light); /* Use the text color variable */
   margin: 4px 10px;
 }
 
@@ -374,10 +587,13 @@ section .container {
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
+.image-border {
+  border: 1px solid var(--text-dark); /* Replace #FF0000 with your desired border color */
+}
 .about-me .content h3 {
   font-weight: 700;
   font-size: 26px;
-  color: #1c7d32;
+  color: #e9f1eb;
 }
 
 .about-me .content ul {
@@ -392,12 +608,16 @@ section .container {
 .about-me .content ul i {
   font-size: 20px;
   padding-right: 2px;
-  color: #1c7d32;
+  color: var(--text-underline);
 }
 
 .about-me .content p:last-child {
   margin-bottom: 0;
 }
+.about-me .row {
+ color: var(--text-light);
+}
+
 
 /*--------------------------------------------------------------
 # Counts
@@ -478,6 +698,7 @@ section .container {
 /*--------------------------------------------------------------
 # Interests
 --------------------------------------------------------------*/
+/* Interests Section */
 .interests .icon-box {
   display: flex;
   align-items: center;
@@ -485,7 +706,6 @@ section .container {
   background: #09203a;
   transition: ease-in-out 0.3s;
 }
-
 
 .interests .icon-box i {
   font-size: 32px;
@@ -506,9 +726,7 @@ section .container {
   background: #042b56eb;
 }
 
-/*--------------------------------------------------------------
-# Testimonials
---------------------------------------------------------------*/
+/* Testimonials Section */
 .testimonials .testimonial-item {
   box-sizing: content-box;
   min-height: 320px;
@@ -536,7 +754,8 @@ section .container {
   margin: 0 0 0 45px;
 }
 
-.testimonials .testimonial-item .quote-icon-left, .testimonials .testimonial-item .quote-icon-right {
+.testimonials .testimonial-item .quote-icon-left,
+.testimonials .testimonial-item .quote-icon-right {
   color: rgba(255, 255, 255, 0.25);
   font-size: 26px;
 }
@@ -565,7 +784,8 @@ section .container {
   z-index: 1;
 }
 
-.testimonials .owl-nav, .testimonials .owl-dots {
+.testimonials .owl-nav,
+.testimonials .owl-dots {
   margin-top: 5px;
   text-align: center;
 }
@@ -589,9 +809,7 @@ section .container {
   }
 }
 
-/*--------------------------------------------------------------
-# Resume
---------------------------------------------------------------*/
+/* Resume Section */
 .resume .resume-title {
   font-size: 26px;
   font-weight: 700;
@@ -650,15 +868,14 @@ section .container {
   border: 2px solid #9e7f25;
 }
 
-/*--------------------------------------------------------------
-# Services
---------------------------------------------------------------*/
+/* Services Section */
 .services .icon-box {
   text-align: center;
-  background: #09203a;
+  background: var(--background-dark);
+  color:var(--text-light);
   padding: 40px 40px;
   transition: all ease-in-out 0.3s;
-  margin: 10px
+  margin: 10px;
 }
 
 .services .icon-box .icon {
@@ -675,6 +892,13 @@ section .container {
   transform-style: preserve-3d;
 }
 
+body.light-mode {
+  .services .icon-box .icon i {
+    background: var(--background-dark);
+    color: var(--text-light);
+    font-size: 28px;
+  }
+}
 .services .icon-box .icon i {
   color: #fff;
   font-size: 28px;
@@ -687,7 +911,7 @@ section .container {
   top: -8px;
   height: 100%;
   width: 100%;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.09);
   border-radius: 5px;
   transition: all .3s ease-out 0s;
   transform: translateZ(-1px);
@@ -708,9 +932,15 @@ section .container {
   font-size: 14px;
   margin-bottom: 0;
 }
+.services .icon-box em {
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+  color: var(--text-color);
+}
 
 .services .icon-box:hover {
-  background: #042e5f;
+  background: var(--background-dark-shade);
   border-color: #1c7d32;
 }
 
@@ -730,9 +960,7 @@ section .container {
   color: #12d640;
 }
 
-/*--------------------------------------------------------------
-# Portfolio
---------------------------------------------------------------*/
+/* Portfolio Section */
 .portfolio .portfolio-item {
   margin-bottom: 30px;
 }
@@ -890,32 +1118,34 @@ section .container {
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
+/* Contact Section */
+/* Contact Section for Dark Mode */
+/* Contact Section for Light Mode */
 .contact .info-box {
-  color: #444444;
-  padding: 20px;
+  color: var(--text-dark);
+  padding: 15px;
   width: 100%;
-  background: #09203a;
+  background: var(--background-white);
 }
 
 .contact .info-box i.bx {
   font-size: 24px;
-  color: #dee2e6;
   border-radius: 50%;
   padding: 14px;
   float: left;
-  background: rgba(255, 255, 255, 0.1);
+  background: #ffffff1a;
 }
 
 .contact .info-box h3 {
   font-size: 20px;
-  color: #28a745;
+  color: var(--text-light);
   font-weight: 700;
   margin: 10px 0 8px 68px;
 }
 
 .contact .info-box p {
   padding: 0;
-  color: #fff;
+  color: var(--text-light);
   line-height: 24px;
   font-size: 14px;
   margin: 0 0 0 68px;
@@ -923,21 +1153,73 @@ section .container {
 
 .contact .info-box .social-links {
   margin: 5px 0 0 68px;
+  color: var(--text-light);
   display: flex;
 }
 
 .contact .info-box .social-links a {
   font-size: 18px;
   display: inline-block;
-  color: #fff;
+  color: var(--text-light);
   line-height: 1;
   margin-right: 12px;
   transition: 0.3s;
 }
 
 .contact .info-box .social-links a:hover {
-  color: #12d640;
+  color: var(--text-color);
 }
+
+/* Contact Section for Dark Mode */
+.light-mode .contact .info-box {
+  color: var(--text-light);
+  padding: 15px;
+  width: 100%;
+  background: var(--background-white);
+}
+
+.light-mode .contact .info-box i.bx {
+  font-size: 24px;
+  border-radius: 50%;
+  padding: 14px;
+  float: left;
+  background: rgba(0, 245, 65, 0.1);
+}
+
+.light-mode .contact .info-box h3 {
+  font-size: 20px;
+  color: var(--text-light);
+  font-weight: 700;
+  margin: 10px 0 8px 68px;
+}
+
+.light-mode .contact .info-box p {
+  padding: 0;
+  color:var(--text-light);
+  line-height: 24px;
+  font-size: 14px;
+  margin: 0 0 0 68px;
+}
+
+.light-mode .contact .info-box .social-links {
+  margin: 5px 0 0 68px;
+  color: var(--text-light);
+  display: flex;
+}
+
+.light-mode .contact .info-box .social-links a {
+  font-size: 18px;
+  display: inline-block;
+  color: #000000;
+  line-height: 1;
+  margin-right: 12px;
+  transition: 0.3s;
+}
+
+.light-mode .contact .info-box .social-links a:hover {
+  color: var(--text-color);
+}
+
 
 .contact .php-email-form {
   padding: 30px;
@@ -990,7 +1272,8 @@ section .container {
   animation: animate-loading 1s linear infinite;
 }
 
-.contact .php-email-form input, .contact .php-email-form textarea {
+.contact .php-email-form input,
+.contact .php-email-form textarea {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
@@ -1000,31 +1283,37 @@ section .container {
   color: #fff;
 }
 
-.contact .php-email-form input:focus, .contact .php-email-form textarea:focus {
+.contact .php-email-form input:focus,
+.contact .php-email-form textarea:focus {
   background-color: rgba(255, 255, 255, 0.11);
 }
 
-.contact .php-email-form input::-webkit-input-placeholder, .contact .php-email-form textarea::-webkit-input-placeholder {
+.contact .php-email-form input::-webkit-input-placeholder,
+.contact .php-email-form textarea::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.3);
   opacity: 1;
 }
 
-.contact .php-email-form input::-moz-placeholder, .contact .php-email-form textarea::-moz-placeholder {
+.contact .php-email-form input::-moz-placeholder,
+.contact .php-email-form textarea::-moz-placeholder {
   color: rgba(255, 255, 255, 0.3);
   opacity: 1;
 }
 
-.contact .php-email-form input:-ms-input-placeholder, .contact .php-email-form textarea:-ms-input-placeholder {
+.contact .php-email-form input:-ms-input-placeholder,
+.contact .php-email-form textarea:-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.3);
   opacity: 1;
 }
 
-.contact .php-email-form input::-ms-input-placeholder, .contact .php-email-form textarea::-ms-input-placeholder {
+.contact .php-email-form input::-ms-input-placeholder,
+.contact .php-email-form textarea::-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.3);
   opacity: 1;
 }
 
-.contact .php-email-form input::placeholder, .contact .php-email-form textarea::placeholder {
+.contact .php-email-form input::placeholder,
+.contact .php-email-form textarea::placeholder {
   color: rgba(255, 255, 255, 0.3);
   opacity: 1;
 }
@@ -1068,9 +1357,7 @@ section .container {
   }
 }
 
-/*--------------------------------------------------------------
-# Credits
---------------------------------------------------------------*/
+/* Credits Section */
 .credits {
   position: fixed;
   right: 15px;
