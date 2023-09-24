@@ -182,6 +182,42 @@
   }
 }
 
+.dark .star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(255,255,255,0.0);
+  border-radius: 5px;
+}
+
+@keyframes twinkle {
+  0% {
+    transform: scale(1, 1);
+    background: rgba(255,255,255,0.0);
+    animation-timing-function: ease-in;
+  }
+  60% {
+    transform: scale(0.8, 0.8);
+    background: rgba(255,255,255,1);
+    animation-timing-function: ease-out;
+  }
+  80% {
+    background: rgba(255,255,255,0.00);
+    transform: scale(1, 1);
+  }
+  100% {
+    background: rgba(255,255,255,0.0);
+    transform: scale(1, 1);
+  }
+}
+
+
+
+
+
+
+
+
 /*-------------------------Night mode start-------------------------------------*/
 
 :root {
@@ -194,9 +230,11 @@
   --text-underline: #FFB000;
 }
 
+
 body {
   font-family: "Open Sans", sans-serif;
   position: relative;
+  overflow-x: hidden;
 }
 
 .light-mode {
@@ -561,7 +599,6 @@ section .container {
   margin: 0 0 20px 0;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #FFF;
   font-family: "Poppins", sans-serif;
 }
 
@@ -895,7 +932,7 @@ section .container {
 body.light-mode {
   .services .icon-box .icon i {
     background: var(--background-dark);
-    color: var(--text-light);
+    color: var(--text-dark);
     font-size: 28px;
   }
 }
@@ -973,7 +1010,23 @@ body.light-mode {
   border-radius: 50px;
   padding: 2px 15px;
 }
-
+.light-mode .portfolio #portfolio-flters li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 16px 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #000000;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0 3px 10px 3px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 4px;
+}
+.light-mode.portfolio #portfolio-flters li:hover, .portfolio #portfolio-flters li.filter-active {
+  background: rgba(0, 245, 65, 0.1);
+}
 .portfolio #portfolio-flters li {
   cursor: pointer;
   display: inline-block;
@@ -1382,4 +1435,49 @@ body.light-mode {
     right: 0;
     transform: translateX(-50%);
   }
+}
+
+/*---------------scrollbar-----------------*/
+/* Styles for the progress bar */
+#myBar {
+  width: 0;
+  height: 5px;
+  background: linear-gradient(to right, #de1d8d, #FFB000 , #00ff00);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999; /* Ensure the progress bar is above the header */
+}
+.dark #myBar {
+  background: linear-gradient(to right, #00ff00 , #de1d8d , #FFB000);
+}
+
+
+/* Styles for the scroll bar */
+/* For light mode */
+
+body.light-mode::-webkit-scrollbar {
+  width: 15px; /* Adjust the width as needed */
+  background-color: #347CF8; /* Set the background color for light mode */
+}
+body.light-mode::-webkit-scrollbar-thumb {
+  width: 15px;
+  background: linear-gradient(to bottom, #FFDB58 0%, #FFDB58 5%, #c6bfbf 10%, #ece5e5 40%, #87b4d2 45%,#3498DB 50%, #3498DB 95%, #0099ff 99%, #FFDB58);
+  border-radius: 10px; /* Round the edges of the scroll thumb */
+}
+
+/* For dark mode */
+body.dark::-webkit-scrollbar {
+  background-color: #2B2B2B; /* Set the background color for dark mode */
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background: #5B5B5B; /* Set the color of the scroll thumb */
+  border-radius: 10px; /* Round the edges of the scroll thumb */
+}
+
+/* Apply the twinkle animation to the scrollbar thumb for dark mode */
+body.dark::-webkit-scrollbar-thumb {
+  animation: twinkle 1s infinite alternate;
 }

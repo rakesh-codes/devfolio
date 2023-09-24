@@ -172,3 +172,21 @@ switchInput.addEventListener('change', function () {
 
 // Set the initial dark mode state when the page loads
 toggleDarkMode();
+
+
+// Get the progress bar element
+var progressBar = document.getElementById("myBar");
+
+// Add an event listener for scrolling
+window.addEventListener('scroll', function () {
+    var max = document.body.scrollHeight - window.innerHeight;
+    var percent = (window.scrollY / max) * 100;
+    progressBar.style.width = percent + "%";
+});
+
+// twinkles to dark mode
+for (var i = 0; i < 100; i++) {
+  var star = '<div class="star" style="animation: twinkle '+((Math.random()*5) + 5)+'s linear '+((Math.random()*5) + 5)+'s infinite; top: '+Math.random()*$(window).height()+'px; left: '+Math.random()*$(window).width()+'px;"></div>';
+  $('body').append(star);
+}
+
